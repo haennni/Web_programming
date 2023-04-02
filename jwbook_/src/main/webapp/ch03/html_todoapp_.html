@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	.container {
+		background-color: gold;
+		box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		margin: auto;
+		margin-top: 50px;
+		padding: 50px;
+		width: 55%;
+	}
+
+	.input-group {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: 20px;
+	}
+
+	.input-group > input[type="text"] {
+		flex-grow: 1;
+		padding: 10px;
+		border: none;
+		border-radius: 5px;
+		font-size: 1rem;
+	}
+
+	.input-group > button {
+		margin-left: 10px;
+		padding: 10px;
+		background-color: dodgerblue;
+		color: #FFF;
+		border: none;
+		border-radius: 5px;
+		font-size: 1rem;
+		cursor: pointer;
+	}
+
+	.todolist {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;}
+	
+
+	.todolist > li {
+		background-color: lemonchiffon;
+		border-radius: 5px;
+		margin-bottom: 10px;
+		padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+</style>
+
+<script>
+	function addItem() {
+		let todo = document.getElementById("item");
+		let list = document.getElementById("todolist");
+		let listitem = document.createElement("li");
+		listitem.className = "listitem";
+		let xbtn = document.createElement("button");
+		xbtn.className = "deletebtn";
+		
+		xbtn.onclick = function(e) {
+			let pnode = e.target.parentNode;
+			list.removeChild(pnode);
+		}
+		listitem.innerText = todo.value;
+		listitem.appendChild(xbtn);
+		list.appendChild(listitem);
+		
+		todo.value = "";
+		todo.focus();
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<h2>My ToDo App</h2>
+		<hr>
+		<div class="input-group">
+			<input id="item" type="text" placeholder="할일을 입력하세요..">
+			<button type="button" onclick="addItem()">할일 추가</button>
+		</div>
+		<hr>
+		<ul id="todolist" class="todolist"></ul>
+	</div>
+</body>
+</html>
